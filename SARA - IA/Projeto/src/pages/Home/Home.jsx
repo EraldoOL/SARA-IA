@@ -2,6 +2,7 @@ import { ArrowUp } from "lucide-react";
 import { useState, useRef } from "react";
 import Groq from "groq-sdk";
 
+
 const groq = new Groq({
   apiKey: import.meta.env.VITE_APP_GROQ_KEY,
   dangerouslyAllowBrowser: true,
