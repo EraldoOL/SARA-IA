@@ -65,7 +65,7 @@ export function Home() {
         <form className="w-full" onSubmit={startQuery}>
           <div className="flex flex-1 flex-col h-full max-w-full relative">
             <div className="group relative flex w-full items-center">
-              <div className="backdrop-blur-2xl bg-token-composer-surface flex flex-col gap-1.5 no-transparency:backdrop-blur-none p-1.5 rounded-[26px] transition-colors w-full bg-pink">
+              <div className="backdrop-blur-2xl bg-token-composer-surface flex flex-col gap-1.5 no-transparency:backdrop-blur-none p-1.5 rounded-[26px] transition-colors w-full border-2 border-roxoClaro">
                 <textarea
                   name="messageInput"
                   className="w-full p-4 h-14 pl-10 pr-12 outline-none text-white bg-gray-600 resize-none rounded-full mb-2 overflow-y-hidden"
