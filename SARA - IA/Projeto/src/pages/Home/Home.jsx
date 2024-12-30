@@ -28,7 +28,7 @@ export function Home() {
   
      userInput.toLowerCase().includes("de onde veio")
      ) {
-    systemContent = "A inspiração para este chatbot foi uma amiga do meu Desenvolvedor Eraldo chamada Sara, que conheceu no ensino médio.";
+    systemContent = "A inspiração para este chatbot foi uma amiga do meu Desenvolvedor Eraldo chamada Sara, que conheceu no ensino medio.";
   } 
   
   else if (userInput.toLowerCase().includes("desenvolvedor")) {
@@ -57,7 +57,7 @@ export function Home() {
 
 
   return (
-    <div className="flex flex-col items-center justify-around h-[100vh] bg-pink text-white overflow-hidden">
+    <div className="flex flex-col items-center justify-around h-[100vh] bg-gray-900 text-white overflow-hidden">
       <div className="w-full max-w-2xl p-4 overflow-hidden h-[65vh] bg-transparent rounded-lg ">
         <article>{generatedCode}</article>
       </div>
