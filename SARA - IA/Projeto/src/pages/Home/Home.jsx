@@ -68,7 +68,7 @@ export function Home() {
               <div className="backdrop-blur-2xl bg-token-composer-surface flex flex-col gap-1.5 no-transparency:backdrop-blur-none p-1.5 rounded-[26px] transition-colors w-full ">
                 <textarea
                   name="messageInput"
-                  className="w-full p-4 h-14 pl-10 pr-12 outline-none text-white bg-gray-600 resize-none rounded-full mb-2 overflow-y-hidden border-2 border-roxoClaro"
+                  className="w-full p-4 h-14 pl-10 pr-12 outline-none text-white bg-black resize-none rounded-full mb-2 overflow-y-hidden border-2 border-roxoClaro"
                   placeholder="Digite sua mensagem..."
                   ref={inputRef}
                 />
