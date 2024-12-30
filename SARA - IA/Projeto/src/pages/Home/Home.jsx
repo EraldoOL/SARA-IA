@@ -28,7 +28,7 @@ export function Home() {
   
      userInput.toLowerCase().includes("de onde veio")
      ) {
-    systemContent = "A inspiração para este chatbot foi uma amiga do Eraldo chamada Sara, que conheceu no colégio.";
+    systemContent = "A inspiração para este chatbot foi uma amiga do meu Desenvolvedor Eraldo chamada Sara, que conheceu no ensino médio.";
   } 
   
   else if (userInput.toLowerCase().includes("desenvolvedor")) {
