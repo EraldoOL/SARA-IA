@@ -8,12 +8,12 @@ const groq = new Groq({
 });
 
 export function Home() {
-  const [messages, setMessages] = useState([]);  // Estado para armazenar as mensagens
+  const [messages, setMessages] = useState([]); // Estado para armazenar as mensagens
   const inputRef = useRef();
 
   async function startQuery(event) {
     event.preventDefault();
-    const userMessage = inputRef.current.value;  // Captura a mensagem do usuário
+    const userMessage = inputRef.current.value; // Captura a mensagem do usuário
 
     // Atualiza o estado com a mensagem do usuário
     setMessages((prevMessages) => [
@@ -22,37 +22,32 @@ export function Home() {
     ]);
 
     const chatCompletion = await getGroqChatCompletion(userMessage);
-    
+
     // Atualiza o estado com a resposta do chatbot
     setMessages((prevMessages) => [
       ...prevMessages,
-      { role: "bot", content: chatCompletion.choices[0]?.message?.content || "" },
+      {
+        role: "bot",
+        content: chatCompletion.choices[0]?.message?.content || "",
+      },
     ]);
 
-    inputRef.current.value = "";  // Limpa o campo de input
+    inputRef.current.value = ""; // Limpa o campo de input
   }
 
   async function getGroqChatCompletion(userInput) {
     let systemContent = "";
 
-    // Verifica se a pergunta é simples (menos de 50 caracteres) ou complexa (com palavras-chave)
     const isSimpleQuestion = userInput.length < 50;
-    const hasComplexKeywords = /explicar|detalhar|como|porquê|o que/.test(userInput.toLowerCase());
+    const hasComplexKeywords = /explicar|detalhar|como|porquê|o que/.test(
+      userInput.toLowerCase()
+    );
 
     if (isSimpleQuestion || !hasComplexKeywords) {
       systemContent = "Resposta curta e direta: " + userInput;
     } else {
       systemContent = `Aqui está uma explicação detalhada para sua pergunta: ${userInput}`;
     }
-
-    // Respostas específicas
-    if (userInput.toLowerCase().includes("inspiração") || userInput.toLowerCase().includes("de onde veio")) {
-      systemContent = "A inspiração para este chatbot foi uma amiga do meu Desenvolvedor Eraldo chamada Sara, que conheceu no ensino médio.";
-    } else if (userInput.toLowerCase().includes("desenvolvedor")) {
-      systemContent = "Eu fui desenvolvido por Eraldo Oliveira, um programador fullstack de 19 anos.";
-    } else {
-      systemContent = "Você está falando com o chatbot Sara, desenvolvido por Eraldo Oliveira. Eu sou uma IA pronta para responder suas perguntas e ajudar no que você precisar.";
-    } 
 
     return groq.chat.completions.create({
       messages: [
@@ -71,14 +66,20 @@ export function Home() {
 
   return (
     <div className="flex flex-col items-center justify-around h-[100vh] bg-roxo text-white overflow-hidden">
-      <div className="w-[100%] max-w-2xl p-4 overflow-y-auto h-[65vh] bg-transparent rounded-lg">
+      <div className="w-full max-w-2xl p-4 overflow-y-auto h-[65vh] bg-transparent rounded-lg">
         {messages.map((msg, index) => (
           <div
             key={index}
             className={`mb-2 p-2 rounded-lg ${
-              msg.role === "user" ? "bg-blue-500 text-white text-right" : "bg-gray-700 text-white text-left"
+              msg.role === "user"
+                ? "bg-blue-500 text-white self-end text-right"
+                : "bg-gray-700 text-white self-start text-left"
             }`}
-            
+            style={{
+              display: "inline-block", // Ajusta a largura ao texto
+              maxWidth: "75%", // Limita a largura para mensagens muito longas
+              wordBreak: "break-word", // Permite quebrar palavras muito longas
+            }}
           >
             {msg.content}
           </div>
@@ -96,7 +97,7 @@ export function Home() {
                   ref={inputRef}
                 />
                 <button
-                  className="absolute bg-gray-400 rounded-full right-7  top-1/3 transform -translate-y-[14%] text-gray-900"
+                  className="absolute bg-gray-400 rounded-full right-7 top-1/3 transform -translate-y-[14%] text-gray-900"
                 >
                   <ArrowUp size={30} strokeWidth={1.4} />
                 </button>
