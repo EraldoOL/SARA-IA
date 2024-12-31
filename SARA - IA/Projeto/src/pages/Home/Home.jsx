@@ -72,11 +72,11 @@ export function Home() {
             key={index}
             className={`mb-2 p-2 rounded-lg ${
               msg.role === "user"
-                ? "bg-blue-500 text-white self-end text-right"
-                : "bg-gray-700 text-white self-start text-left"
+                ? "bg-blue-500 text-white text-right self-end"
+                : "bg-gray-700 text-white text-left self-start"
             }`}
             style={{
-              display: "inline-block", // Ajusta a largura ao texto
+              display: "block", // Garante que cada mensagem ocupe sua própria linha
               maxWidth: "75%", // Limita a largura para mensagens muito longas
               wordBreak: "break-word", // Permite quebrar palavras muito longas
             }}
