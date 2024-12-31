@@ -66,26 +66,26 @@ export function Home() {
 
   return (
     <div className="flex flex-col items-center justify-around h-[100vh] bg-roxo text-white overflow-hidden">
-      <div className="w-full max-w-2xl p-4 overflow-y-auto h-[65vh] bg-transparent rounded-lg">
-        {messages.map((msg, index) => (
-          <div
-            key={index}
-            className={`mb-2 p-2 rounded-lg ${
-              msg.role === "user"
-                ? "bg-blue-500 text-white text-right self-end"
-                : "bg-gray-700 text-white text-left self-start"
-            }`}
-            style={{
-              display: "inline-block", // Garante que a largura se ajuste ao texto
-              maxWidth: "75%", // Limita a largura máxima
-              wordBreak: "break-word", // Quebra palavras muito longas
-              whiteSpace: "pre-wrap", // Respeita quebras de linha no texto
-            }}
-          >
-            {msg.content}
+      <div className="w-full max-w-2xl p-4 overflow-y-auto h-[65vh] bg-transparent rounded-lg flex flex-col gap-2">
+            {messages.map((msg, index) => (
+              <div
+                key={index}
+                className={`p-2 rounded-lg ${
+                  msg.role === "user"
+                    ? "bg-blue-500 text-white self-end"
+                    : "bg-gray-700 text-white self-start"
+                }`}
+                style={{
+                  display: "inline-block",
+                  maxWidth: "75%",
+                  wordBreak: "break-word",
+                  whiteSpace: "pre-wrap",
+                }}
+              >
+                {msg.content}
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
       <div className="mx-auto w-full flex gap-4 text-base md:gap-5 lg:gap-6 md:max-w-3xl lg:max-w-[40rem] xl:max-w-[48rem]">
         <form className="w-full" onSubmit={startQuery}>
           <div className="flex flex-1 flex-col h-full max-w-full relative">
