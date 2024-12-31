@@ -77,7 +77,7 @@ export function Home() {
             }`}
             style={{
               display: "block", // Garante que cada mensagem ocupe sua própria linha
-              maxWidth: "75%", // Limita a largura para mensagens muito longas
+              maxWidth: "100%", // Limita a largura para mensagens muito longas
               wordBreak: "break-word", // Permite quebrar palavras muito longas
             }}
           >
