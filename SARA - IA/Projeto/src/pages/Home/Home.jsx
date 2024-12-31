@@ -76,7 +76,7 @@ export function Home() {
           <div
             key={index}
             className={`mb-2 p-2 rounded-lg ${
-              msg.role === "user" ? "bg-blue-500 text-white text-right inline-block" : "bg-gray-700 text-white text-left inline-block"
+              msg.role === "user" ? "bg-blue-500 text-white text-right self-end" : "bg-gray-700 text-white text-left self-start"
             }`}
           >
             {msg.content}
