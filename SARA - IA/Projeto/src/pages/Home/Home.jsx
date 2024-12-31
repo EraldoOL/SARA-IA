@@ -71,7 +71,7 @@ export function Home() {
 
   return (
     <div className="flex flex-col items-center justify-around h-[100vh] bg-roxo text-white overflow-hidden">
-      <div className="w-full max-w-2xl p-4 overflow-y-auto h-[65vh] bg-transparent rounded-lg">
+      <div className="w-[100%] max-w-2xl p-4 overflow-y-auto h-[65vh] bg-transparent rounded-lg">
         {messages.map((msg, index) => (
           <div
             key={index}
