@@ -76,9 +76,10 @@ export function Home() {
                 : "bg-gray-700 text-white text-left self-start"
             }`}
             style={{
-              display: "block", // Garante que cada mensagem ocupe sua própria linha
-              maxWidth: "100%", // Limita a largura para mensagens muito longas
-              wordBreak: "break-word", // Permite quebrar palavras muito longas
+              display: "inline-block", // Garante que a largura se ajuste ao texto
+              maxWidth: "75%", // Limita a largura máxima
+              wordBreak: "break-word", // Quebra palavras muito longas
+              whiteSpace: "pre-wrap", // Respeita quebras de linha no texto
             }}
           >
             {msg.content}
