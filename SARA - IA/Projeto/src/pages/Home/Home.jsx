@@ -48,6 +48,15 @@ export function Home() {
     } else {
       systemContent = `Aqui está uma explicação detalhada para sua pergunta: ${userInput}`;
     }
+    
+    if (userInput.toLowerCase().includes("inspiração") || userInput.toLowerCase().includes("de onde veio")) {
+      systemContent = "A inspiração para este chatbot foi uma amiga do meu Desenvolvedor Eraldo chamada Sara, que conheceu no ensino médio.";
+    } else if (userInput.toLowerCase().includes("desenvolvedor")) {
+      systemContent = "Eu fui desenvolvido por Eraldo Oliveira, um programador fullstack de 19 anos.";
+    } else {
+      systemContent = "Você está falando com o chatbot Sara, desenvolvido por Eraldo Oliveira. Eu sou uma IA pronta para responder suas perguntas e ajudar no que você precisar.";
+    }
+    
 
     return groq.chat.completions.create({
       messages: [
