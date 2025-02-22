@@ -49,7 +49,6 @@ export function Home() {
       systemContent = `Aqui está uma explicação detalhada para sua pergunta: ${userInput}`;
     }
     
-    
     if (userInput.toLowerCase().includes("inspiração") || userInput.toLowerCase().includes("inspiração")) {
       systemContent = "A inspiração para este chatbot foi uma amiga do meu Desenvolvedor Eraldo chamada Sara, que conheceu no ensino médio.";
     } else if (userInput.toLowerCase().includes("desenvolvedor")) {
