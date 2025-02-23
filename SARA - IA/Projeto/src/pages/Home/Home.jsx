@@ -59,7 +59,6 @@ export function Home() {
       systemContent = "Você está falando com o chatbot Sara, desenvolvido por Eraldo Oliveira. Eu sou uma IA pronta para responder suas perguntas e ajudar no que você precisar.";
     }
     
-
     return groq.chat.completions.create({
       messages: [
         {
