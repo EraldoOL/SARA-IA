@@ -7,6 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        
         pink: '#EB45E5',
         
         roxo: '#17144B',
