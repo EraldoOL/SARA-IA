@@ -11,6 +11,7 @@ export default {
         roxo: '#17144B',
         roxoClaro: '#3A1694',
         black: '#000000'
+        
       },
       
     },
