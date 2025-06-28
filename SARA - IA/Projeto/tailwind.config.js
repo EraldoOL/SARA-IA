@@ -9,6 +9,7 @@ export default {
       colors: {
         pink: '#EB45E5',
         roxo: '#17144B',
+        
         roxoClaro: '#3A1694',
         
         black: '#000000'
