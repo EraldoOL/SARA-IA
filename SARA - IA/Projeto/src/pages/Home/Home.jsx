@@ -56,7 +56,7 @@ export function Home() {
     } else if (userInput.toLowerCase().includes("sobre eraldo")) {
       systemContent = "Ele é bem estudioso, ja fez varios sites e sistemas, ele é um dos programadores mais inteligente do universo";
     } else {
-      systemContent = "Você está falando com o chatbot Sara, desenvolvido por Eraldo Oliveira. Eu sou uma IA pronta para responder suas perguntas e ajudar no que você precisar.";
+      systemContent = "Você está falando com o chatbot Sara, desenvolvido por Eraldo Oliveira. Eu sou uma IA pronta para responder suas perguntas e ajudar no que você precisar.(estou sendo atualizada ainda, tenha paciência comigo:)";
     }
     
     return groq.chat.completions.create({
