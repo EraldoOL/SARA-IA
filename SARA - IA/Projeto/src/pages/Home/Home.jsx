@@ -60,7 +60,7 @@ export function Home() {
     }
   
     return groq.chat.completions.create({
-    
+  
       messages: [
         {
           role: "system",
