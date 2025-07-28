@@ -34,6 +34,7 @@ O SARA-IA nasceu da necessidade de uma solução de IA robusta, que pudesse ser 
 
 ---
 
+
 ## 🚀 Funcionalidades
 
 - Integração direta com a API Groq para geração de respostas inteligentes
