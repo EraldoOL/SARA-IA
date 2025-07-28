@@ -24,12 +24,13 @@ O SARA-IA nasceu da necessidade de uma solução de IA robusta, que pudesse ser 
 
 ## ⚙️ Tecnologias Utilizadas
 
-- **JavaScript (Node.js)** – Linguagem principal para backend e lógica de IA
-- **API Groq** – Motor de Inteligência Artificial para processamento de linguagem natural
-- **Vercel** – Deploy automatizado, rápido e seguro
-- **Arquitetura Modular** – Facilita manutenção e evolução do projeto
-- **Dotenv** – Gerenciamento seguro de variáveis de ambiente
-- **MIT License** – Código aberto para uso e contribuição
+- **JavaScript (Node.js)**
+- **API Groq**
+- **Vercel**
+- **Arquitetura Modular**
+- **Dotenv**
+- **Vite**
+- **Tailwind**
 
 ---
 
