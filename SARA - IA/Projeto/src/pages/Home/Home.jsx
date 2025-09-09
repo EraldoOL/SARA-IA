@@ -32,7 +32,7 @@ export function Home() {
       },
     ]);
 
-    inputRef.current.value = ""; // Limpa o campo de input
+    inputRef.current.value = ""; // Limpa o campo de inpu
   }
 
   async function getGroqChatCompletion(userInput) {
