@@ -1,27 +1,43 @@
+// api/chat.js
 import Groq from "groq-sdk";
 
+// Vercel serverless: req.body pode vir como string
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Método não permitido" });
   }
 
-  // Pegue a mensagem do fronten
-  const { userInput } = req.body;
+  // Tratamento do body (string ou objeto)
+  let userInput;
+  try {
+    if (typeof req.body === "string") {
+      const json = JSON.parse(req.body);
+      userInput = json.userInput;
+    } else {
+      userInput = req.body.userInput;
+    }
+  } catch (e) {
+    return res.status(400).json({ error: "Body inválido" });
+  }
 
-  // Pegue a chave da API das variáveis de ambiente do servidor
+  if (!userInput || typeof userInput !== "string") {
+    return res.status(400).json({ error: "Campo 'userInput' obrigatório." });
+  }
+
   const groq = new Groq({
     apiKey: process.env.GROQ_API_KEY,
   });
 
-  // Use let para poder atualizar o valor
-  let systemContent = "Você está falando com o chatbot Sara, desenvolvido por Eraldo Oliveira.";
+  // Lógica de systemContent
+  let systemContent = "";
+  const lowerInput = userInput.toLowerCase();
 
-  if (userInput.toLowerCase().includes("inspiração")) {
+  if (lowerInput.includes("inspiração")) {
     systemContent = "A inspiração para este chatbot foi uma amiga do meu Desenvolvedor Eraldo chamada Sara, que conheceu no ensino médio.";
-  } else if (userInput.toLowerCase().includes("desenvolvedor")) {
+  } else if (lowerInput.includes("desenvolvedor")) {
     systemContent = "Eu fui desenvolvido por Eraldo Oliveira, um programador fullstack de 19 anos, ele tem quase 2 anos de experiência na área e é especializado em sistema web front/back e estou na versão 1.8.3";
-  } else if (userInput.toLowerCase().includes("sobre eraldo")) {
-    systemContent = "Ele é bem estudioso, ja fez varios sites e sistemas, ele é um dos programadores mais inteligente do universo";
+  } else if (lowerInput.includes("sobre eraldo")) {
+    systemContent = "Ele é bem estudioso, já fez vários sites e sistemas, ele é um dos programadores mais inteligentes do universo";
   } else {
     systemContent = "Você está falando com o chatbot Sara, desenvolvido por Eraldo Oliveira. Eu sou uma IA pronta para responder suas perguntas e ajudar no que você precisar. (estou sendo atualizada ainda, tenha paciência comigo :)";
   }
