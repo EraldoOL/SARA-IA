@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Método não permitido" });
   }
 
-  // Pegue a mensagem do frontend
+  // Pegue a mensagem do fronten
   const { userInput } = req.body;
 
   // Pegue a chave da API das variáveis de ambiente do servidor
