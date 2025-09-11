@@ -48,7 +48,7 @@ export default async function handler(req, res) {
         { role: "system", content: systemContent },
         { role: "user", content: userInput },
       ],
-      model: "llama3-70B-8192-v2.0",
+      model: "openai/gpt-oss-20b",
     });
 
     return res.status(200).json({ response: chatCompletion.choices[0]?.message?.content || "" });
