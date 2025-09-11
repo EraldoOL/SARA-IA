@@ -1,29 +1,22 @@
-/*import { ArrowUp } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 import { useState, useRef } from "react";
-import Groq from "groq-sdk";
-
-const groq = new Groq({
-  apiKey: import.meta.env.VITE_APP_GROQ_KEY,
-  dangerouslyAllowBrowser: true,
-});
 
 export function Home() {
-  const [messages, setMessages] = useState([]); // Estado para armazenar as mensagens
+  const [messages, setMessages] = useState([]);
   const inputRef = useRef();
 
   async function startQuery(event) {
     event.preventDefault();
-    const userMessage = inputRef.current.value; // Captura a mensagem do usuário
+    const userMessage = inputRef.current.value;
 
-    // Atualiza o estado com a mensagem do usuário
     setMessages((prevMessages) => [
       ...prevMessages,
       { role: "user", content: userMessage },
     ]);
 
+    // Chame o backend (API) que fala com a Groq
     const chatCompletion = await getGroqChatCompletion(userMessage);
 
-    // Atualiza o estado com a resposta do chatbot
     setMessages((prevMessages) => [
       ...prevMessages,
       {
@@ -32,70 +25,47 @@ export function Home() {
       },
     ]);
 
-    inputRef.current.value = ""; // Limpa o campo de inpu
+    inputRef.current.value = "";
   }
 
   async function getGroqChatCompletion(userInput) {
-    let systemContent = "";
-
-    const isSimpleQuestion = userInput.length < 50;
-    const hasComplexKeywords = /explicar|detalhar|como|porquê|o que/.test(
-      userInput.toLowerCase()
-    );
-
-    if (isSimpleQuestion || !hasComplexKeywords) {
-      systemContent = "Resposta curta e direta: " + userInput;
-    } else {
-      systemContent = `Aqui está uma explicação detalhada para sua pergunta: ${userInput}`;
-    }
-    
-    if (userInput.toLowerCase().includes("inspiração") || userInput.toLowerCase().includes("inspiração")) {
-      systemContent = "A inspiração para este chatbot foi uma amiga do meu Desenvolvedor Eraldo chamada Sara, que conheceu no ensino médio.";
-    } else if (userInput.toLowerCase().includes("desenvolvedor")) {
-      systemContent = "Eu fui desenvolvido por Eraldo Oliveira, um programador fullstack de 19 anos, ele tem quase 2 anos de experiência na área e é especializado em sistema web front/back e estou na versão 1.8.3";
-    } else if (userInput.toLowerCase().includes("sobre eraldo")) {
-      systemContent = "Ele é bem estudioso, ja fez varios sites e sistemas, ele é um dos programadores mais inteligente do universo";
-    } else {
-      systemContent = "Você está falando com o chatbot Sara, desenvolvido por Eraldo Oliveira. Eu sou uma IA pronta para responder suas perguntas e ajudar no que você precisar.(estou sendo atualizada ainda, tenha paciência comigo:)";
-    }
-  
-    return groq.chat.completions.create({
-      messages: [
-        {
-          role: "system",
-          content: systemContent,
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-        {
-          role: "user",
-          content: `Minha pergunta é: ${userInput}`,
-        },
-      ],
-      model: "llama3-8b-8192",
-    });
+        body: JSON.stringify({ userInput }),
+      });
+      const data = await response.json();
+      return { choices: [{ message: { content: data.response } }] };
+    } catch (err) {
+      return { choices: [{ message: { content: "Erro ao se comunicar com o servidor." } }] };
+    }
   }
 
   return (
     <div className="flex flex-col items-center justify-around h-[100vh] bg-roxo text-white overflow-hidden">
       <div className="w-full max-w-2xl p-4 overflow-y-auto h-[65vh] bg-transparent rounded-lg flex flex-col gap-2">
-            {messages.map((msg, index) => (
-              <div
-                key={index}
-                className={`p-2 rounded-lg ${
-                  msg.role === "user"
-                    ? "bg-blue-500 text-white self-end"
-                    : "bg-gray-700 text-white self-start"
-                }`}
-                style={{
-                  display: "inline-block",
-                  maxWidth: "75%",
-                  wordBreak: "break-word",
-                  whiteSpace: "pre-wrap",
-                }}
-              >
-                {msg.content}
-              </div>
-            ))}
+        {messages.map((msg, index) => (
+          <div
+            key={index}
+            className={`p-2 rounded-lg ${
+              msg.role === "user"
+                ? "bg-blue-500 text-white self-end"
+                : "bg-gray-700 text-white self-start"
+            }`}
+            style={{
+              display: "inline-block",
+              maxWidth: "75%",
+              wordBreak: "break-word",
+              whiteSpace: "pre-wrap",
+            }}
+          >
+            {msg.content}
           </div>
+        ))}
+      </div>
       <div className="mx-auto w-full flex gap-4 text-base md:gap-5 lg:gap-6 md:max-w-3xl lg:max-w-[40rem] xl:max-w-[48rem]">
         <form className="w-full" onSubmit={startQuery}>
           <div className="flex flex-1 flex-col h-full max-w-full relative">
@@ -120,7 +90,7 @@ export function Home() {
     </div>
   );
 }
-*/
+
 
 
 
