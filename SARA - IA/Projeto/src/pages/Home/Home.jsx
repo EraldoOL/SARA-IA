@@ -1,4 +1,4 @@
-import { ArrowUp } from "lucide-react";
+/*import { ArrowUp } from "lucide-react";
 import { useState, useRef } from "react";
 import Groq from "groq-sdk";
 
@@ -120,6 +120,13 @@ export function Home() {
     </div>
   );
 }
+*/
+
+
+
+
+
+
 
 /*import { ArrowUp } from "lucide-react";
 import { useState, useRef } from "react";
